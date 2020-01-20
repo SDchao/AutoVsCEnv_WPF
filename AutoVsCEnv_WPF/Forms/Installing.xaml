@@ -1,0 +1,44 @@
+﻿<Page x:Class="AutoVsCEnv_WPF.Forms.Installing"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:uc="clr-namespace:AutoVsCEnv_WPF.UserControls"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      xmlns:local="clr-namespace:AutoVsCEnv_WPF.Forms"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Installing">
+
+    <DockPanel>
+        <uc:Title 
+            DockPanel.Dock="Top"
+            MainText="一切即将准备就绪" 
+            SubText="正在配置VScode C/C++ 环境" 
+            Description="这将会耗费几分钟，请不要强制关闭应用程序"/>
+
+        <WrapPanel
+            DockPanel.Dock="Top"
+            HorizontalAlignment="Center">
+            <TextBlock>闲着无聊？给秃头UP</TextBlock>
+            <TextBlock x:Name="CheckVedio">
+                <Hyperlink Click="CheckBiliSpace">点个关注</Hyperlink>
+            </TextBlock>
+        </WrapPanel>
+
+        <StackPanel
+            Margin="20px">
+            <Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/Loading.gif"
+               Width="100"
+               Height="100"
+               />
+            <WrapPanel
+                HorizontalAlignment="Center">
+                <TextBlock x:Name="WorkingWith">正在初始化操作</TextBlock>
+                <TextBlock xml:space="preserve"> </TextBlock>
+                <TextBlock x:Name="Percent">(100%)</TextBlock>
+            </WrapPanel>
+        </StackPanel>
+
+    </DockPanel>
+</Page>

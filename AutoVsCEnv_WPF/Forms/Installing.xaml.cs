@@ -16,23 +16,18 @@ using System.Windows.Shapes;
 namespace AutoVsCEnv_WPF.Forms
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Installing.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Installing : Page
     {
-        public MainWindow()
+        public Installing()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CheckBiliSpace(object sender, RoutedEventArgs e)
         {
-            this.Content = new Installing();
-        }
-
-        private void CheckVideo_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.baidu.com");
+            System.Diagnostics.Process.Start("https://space.bilibili.com/12263994");
         }
     }
 }
