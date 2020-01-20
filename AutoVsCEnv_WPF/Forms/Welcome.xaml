@@ -20,7 +20,9 @@
             DockPanel.Dock="Top"
             HorizontalAlignment="Center">
             <TextBlock>不知道如何使用？</TextBlock>
-            <TextBlock x:Name="CheckVedio" Style="{StaticResource href}" MouseLeftButtonDown="CheckVideoClicked">点击查看视频教程</TextBlock>
+            <TextBlock x:Name="CheckVedio">
+                <Hyperlink Click="CheckVideo_Click">点击查看视频教程</Hyperlink>
+            </TextBlock>
         </WrapPanel>
 
         <Button

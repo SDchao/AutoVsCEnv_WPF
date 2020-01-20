@@ -25,14 +25,14 @@ namespace AutoVsCEnv_WPF.Forms
             InitializeComponent();
         }
 
-        private void CheckVideoClicked(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CheckVideo_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Diagnostics.Process.Start("https://www.baidu.com");
         }
     }
 }
