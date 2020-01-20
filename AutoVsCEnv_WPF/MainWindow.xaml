@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoVsCEnv_WPF"
+        xmlns:uc="clr-namespace:AutoVsCEnv_WPF.Form"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="AutoVsCEnv" Height="450" Width="800"
+        Background="{StaticResource c0}"
+        ResizeMode="CanMinimize">
+    <DockPanel>
+        <uc:Title 
+            DockPanel.Dock="Top"
+            MainText="嗨！你好呀!" 
+            SubText="欢迎使用 VScode C/C++ 一键配置工具" 
+            Description="By SDchao From Bilibili"/>
+
+        <WrapPanel
+            DockPanel.Dock="Top"
+            HorizontalAlignment="Center">
+            <TextBlock>不知道如何使用？</TextBlock>
+            <TextBlock x:Name="CheckVedio" Style="{StaticResource href}" MouseLeftButtonDown="CheckVideoClicked">点击查看视频教程</TextBlock>
+        </WrapPanel>
+
+        <Button
+            Margin="200px 90px"     
+            FontSize="30px" Click="Button_Click">
+            开始
+        </Button>
+    </DockPanel>
 </Window>

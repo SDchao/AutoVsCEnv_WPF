@@ -13,26 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AutoVsCEnv_WPF
+namespace AutoVsCEnv_WPF.Form
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Title.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Title : UserControl
     {
-        public MainWindow()
+
+        public Title()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
-        private void CheckVideoClicked(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        public string MainText { get; set; }
+        public string SubText { get; set; }
+        public string Description { get; set; }
     }
 }
