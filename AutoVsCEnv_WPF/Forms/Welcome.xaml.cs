@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AutoVsCEnv_WPF
+namespace AutoVsCEnv_WPF.Forms
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
