@@ -27,7 +27,7 @@
 
             <TextBlock VerticalAlignment="Center" Margin="80 20 10 20">选择路径：</TextBlock>
             <TextBox Grid.Column="1" Height="18px"></TextBox>
-            <Button Grid.Column="2" VerticalAlignment="Center" MinHeight="18px" MinWidth="50" Margin="10 20 80 20">修改</Button>
+            <Button Grid.Column="2" VerticalAlignment="Center" MinHeight="25px" MinWidth="50" Margin="10 20 80 20">修改</Button>
         </Grid>
         <DockPanel
             DockPanel.Dock="Bottom">
