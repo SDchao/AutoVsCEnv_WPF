@@ -1,0 +1,55 @@
+﻿<Page x:Class="AutoVsCEnv_WPF.Forms.SelectPath"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:uc="clr-namespace:AutoVsCEnv_WPF.UserControls"
+      xmlns:local="clr-namespace:AutoVsCEnv_WPF.Forms"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AutoVsCEnv">
+
+    <DockPanel>
+        <uc:Title 
+            DockPanel.Dock="Top"
+            MainText="我们需要您提供一些路径" 
+            SubText="请选择MinGW编译器安装位置" 
+            Description="MinGW编译器是将源代码(.c 或 .cpp)文件&#13;编译为可执行(.exe)文件的工具。"/>
+
+        <Grid
+            DockPanel.Dock="Top"
+            Margin="20px">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock VerticalAlignment="Center" Margin="80 20 10 20">选择路径：</TextBlock>
+            <TextBox Grid.Column="1" Height="18px"></TextBox>
+            <Button Grid.Column="2" VerticalAlignment="Center" MinHeight="18px" MinWidth="50" Margin="10 20 80 20">修改</Button>
+        </Grid>
+        <DockPanel
+            DockPanel.Dock="Bottom">
+            <DockPanel.Resources>
+                <!--下方按钮样式-->
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="30px"/>
+                    <Setter Property="Width" Value="100px"/>
+                    <Setter Property="Height" Value="30px"/>
+                </Style>
+            </DockPanel.Resources>
+            
+            <Button DockPanel.Dock="Left">
+                取消
+            </Button>
+
+            <Button
+                DockPanel.Dock="Right"
+                HorizontalAlignment="Right">
+                下一步
+            </Button>
+        </DockPanel>
+    </DockPanel>
+</Page>

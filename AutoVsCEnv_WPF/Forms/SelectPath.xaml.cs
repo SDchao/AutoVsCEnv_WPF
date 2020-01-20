@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace AutoVsCEnv_WPF.Forms
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Page1.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SelectPath : Page
     {
-        public MainWindow()
+        public SelectPath()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Content = new SelectPath();
-        }
-
-        private void CheckVideo_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.baidu.com");
         }
     }
 }

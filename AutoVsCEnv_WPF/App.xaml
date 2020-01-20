@@ -27,7 +27,6 @@
         </Style>
 
         <Style TargetType="Button">
-            <Setter Property="Foreground" Value="{StaticResource c3}"/>
             <Setter Property="Background" Value="{StaticResource c2}"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
