@@ -92,6 +92,8 @@
     <Compile Include="Forms\SelectPath.xaml.cs">
       <DependentUpon>SelectPath.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Operators\CmdRunner.cs" />
+    <Compile Include="Operators\EnvChecker.cs" />
     <Compile Include="UserControls\Title.xaml.cs">
       <DependentUpon>Title.xaml</DependentUpon>
     </Compile>

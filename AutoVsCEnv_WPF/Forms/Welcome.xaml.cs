@@ -34,5 +34,10 @@ namespace AutoVsCEnv_WPF.Forms
         {
             System.Diagnostics.Process.Start("https://www.baidu.com");
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Operators.EnvChecker.CheckGcc();
+        }
     }
 }
