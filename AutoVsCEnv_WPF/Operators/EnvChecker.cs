@@ -22,10 +22,11 @@ namespace AutoVsCEnv_WPF.Operators
 
         public static string GetCodePath()
         {
-
+            // 已经找到过VScode
             if (vscPath != NOTFOUND)
                 return vscPath;
 
+            // 命令行验证是否在PATH路径
             CmdResult result = CmdRunner.CmdRun("code --help");
             if (result.result.Contains("To read output from another program, append"))
             {
@@ -34,6 +35,7 @@ namespace AutoVsCEnv_WPF.Operators
             }
             else
             {
+                // 若不在，采用注册表查找
                 RegistryKey machineKey =
                 Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall");
                 RegistryKey userKey =
