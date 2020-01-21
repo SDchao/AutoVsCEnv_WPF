@@ -16,23 +16,23 @@ using System.Windows.Shapes;
 namespace AutoVsCEnv_WPF.Forms
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Completed.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Completed : Page
     {
-        public MainWindow()
+        public Completed()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CheckDoc(object sender, RoutedEventArgs e)
         {
-            this.Content = new Completed();
+
         }
 
-        private void CheckVideo_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.baidu.com");
+            Application.Current.Shutdown();
         }
     }
 }
