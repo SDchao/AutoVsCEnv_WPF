@@ -12,6 +12,7 @@
     <DockPanel>
         <uc:Title 
             DockPanel.Dock="Top"
+            x:Name="Title"
             MainText="我们需要您提供一些路径" 
             SubText="请选择MinGW编译器安装位置" 
             Description="MinGW编译器是将源代码(.c 或 .cpp)文件&#13;编译为可执行(.exe)文件的工具。"/>
@@ -26,8 +27,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock VerticalAlignment="Center" Margin="80 20 10 20">选择路径：</TextBlock>
-            <TextBox Grid.Column="1" Height="18px"></TextBox>
-            <Button Grid.Column="2" VerticalAlignment="Center" MinHeight="25px" MinWidth="50" Margin="10 20 80 20">修改</Button>
+            <TextBox Grid.Column="1" Height="18px" Text="{Binding SelectedPath}" Name="PathInput"></TextBox>
+            <Button Grid.Column="2" VerticalAlignment="Center" MinHeight="25px" MinWidth="50" Margin="10 20 80 20" Click="Select_Click">修改</Button>
         </Grid>
         <DockPanel
             DockPanel.Dock="Bottom">
@@ -41,7 +42,7 @@
                 </Style>
             </DockPanel.Resources>
             
-            <Button DockPanel.Dock="Left">
+            <Button DockPanel.Dock="Left" Name="PrevButton" Click="PrevButton_Click">
                 取消
             </Button>
 
