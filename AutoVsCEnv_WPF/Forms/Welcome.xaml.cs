@@ -37,7 +37,7 @@ namespace AutoVsCEnv_WPF.Forms
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Operators.EnvChecker.CheckGcc();
+            Operators.LanzouLinkResolutor.Resolve("https://www.lanzous.com/i7iwn2h");
         }
     }
 }
