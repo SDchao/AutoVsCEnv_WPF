@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AutoVsCEnv_WPF.Forms
@@ -25,18 +24,9 @@ namespace AutoVsCEnv_WPF.Forms
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Content = new SelectPath();
-        }
-
-        private void CheckVideo_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.baidu.com");
-        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            this.Content = new Welcome();
         }
     }
 }

@@ -75,17 +75,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\SelectPath.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Welcome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Title.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\Welcome.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -97,18 +101,20 @@
     <Compile Include="Forms\Installing.xaml.cs">
       <DependentUpon>Installing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectPath.xaml.cs">
       <DependentUpon>SelectPath.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Operators\CmdRunner.cs" />
     <Compile Include="Operators\EnvChecker.cs" />
     <Compile Include="Operators\LanzouLinkResolutor.cs" />
     <Compile Include="UserControls\Title.xaml.cs">
       <DependentUpon>Title.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Welcome.xaml.cs">
-      <DependentUpon>Welcome.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

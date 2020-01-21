@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoVsCEnv_WPF.Forms"
         mc:Ignorable="d"
-        Title="AutoVsCEnv" Height="450" Width="800"
         Background="{StaticResource c0}"
-        Loaded="Window_Loaded"
-        ResizeMode="CanMinimize">
-    
+        ResizeMode="CanMinimize"
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
 </Window>
