@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock VerticalAlignment="Center" Margin="80 20 10 20">选择路径：</TextBlock>
-            <TextBox Grid.Column="1" Height="18px" Text="{Binding SelectedPath}" Name="PathInput"></TextBox>
+            <TextBox Grid.Column="1" Height="18px" Name="PathInput"></TextBox>
             <Button Grid.Column="2" VerticalAlignment="Center" MinHeight="25px" MinWidth="50" Margin="10 20 80 20" Click="Select_Click">修改</Button>
         </Grid>
         <DockPanel
@@ -48,7 +48,8 @@
 
             <Button
                 DockPanel.Dock="Right"
-                HorizontalAlignment="Right">
+                HorizontalAlignment="Right"
+                Click="NextButton_Click">
                 下一步
             </Button>
         </DockPanel>

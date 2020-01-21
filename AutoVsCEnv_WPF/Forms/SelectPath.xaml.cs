@@ -22,9 +22,9 @@ namespace AutoVsCEnv_WPF.Forms
     /// </summary>
     public partial class SelectPath : Page
     {
-        public string SelectedGccPath { get; set; }
+        public static string SelectedGccPath { get; set; }
 
-        public string SelectedProjectPath { get; set; }
+        public static string SelectedProjectPath { get; set; }
 
         private static int NowStep = 0;
 
@@ -44,6 +44,8 @@ namespace AutoVsCEnv_WPF.Forms
                 Title.SubText = "请选择MinGW编译器安装位置";
                 Title.Description = "MinGW编译器是将源代码(.c 或 .cpp)文件\n编译为可执行(.exe)文件的工具。";
                 PrevButton.Content = "取消";
+
+                PathInput.SetBinding(TextBox.TextProperty, "SelectedGccPath");
             }
             else
             {
@@ -51,6 +53,7 @@ namespace AutoVsCEnv_WPF.Forms
                 Title.SubText = "请选择 VScode 项目文件夹位置";
                 Title.Description = "项目文件夹是存放源代码(.c 或 .cpp)的位置\n您今后需要调试的代码都需要存放在此文件夹内";
                 PrevButton.Content = "上一步";
+                PathInput.SetBinding(TextBox.TextProperty, "SelectedProjectPath");
             }
         }
 
@@ -60,21 +63,10 @@ namespace AutoVsCEnv_WPF.Forms
             Console.WriteLine(SelectedGccPath);
             dialog.SelectedPath = SelectedGccPath;
             dialog.ShowDialog();
-            if(Directory.Exists(dialog.SelectedPath))
+            if(PathCheck(dialog.SelectedPath))
             {
-                if (InculdeChinese(dialog.SelectedPath))
-                {
-                    MessageBox.Show("路径包含中文", "路径错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    SelectedGccPath = dialog.SelectedPath;
-                    PathInput.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-                }
-            }
-            else
-            {
-                MessageBox.Show("路径不存在", "路径错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                PathInput.Text = dialog.SelectedPath;
+                PathInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             }
         }
 
@@ -91,11 +83,49 @@ namespace AutoVsCEnv_WPF.Forms
             return false;
         }
 
+        private bool PathCheck(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                if (InculdeChinese(path))
+                {
+                    MessageBox.Show("路径包含中文", "路径错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("路径不存在", "路径错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return false;
+        }
+
         private void PrevButton_Click(object sender, RoutedEventArgs e)
         {
             if(NowStep == 0)
             {
-                
+                Application.Current.MainWindow.Content = new Welcome();
+            }
+            else
+            {
+                NowStep = 0;
+                UpdateText();
+            }
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(NowStep == 0)
+            {
+                NowStep = 1;
+                UpdateText();
+            }
+            else
+            {
+                Application.Current.MainWindow.Content = new Installing();
             }
         }
     }
