@@ -18,10 +18,10 @@ namespace AutoVsCEnv_WPF.UserControls
     /// <summary>
     /// Title.xaml 的交互逻辑
     /// </summary>
-    public partial class Title : UserControl
+    public partial class UcTitle : UserControl
     {
 
-        public Title()
+        public UcTitle()
         {
             InitializeComponent();
             this.DataContext = this;
