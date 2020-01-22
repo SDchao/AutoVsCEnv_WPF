@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Background="{StaticResource c0}"
         ResizeMode="CanMinimize"
-        Title="MainWindow" Height="450" Width="800"
+        Title="AutoVsCEnv" Height="450" Width="800"
         Loaded="Window_Loaded">
 </Window>

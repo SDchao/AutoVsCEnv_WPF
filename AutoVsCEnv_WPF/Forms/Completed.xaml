@@ -19,9 +19,9 @@
         <WrapPanel
             DockPanel.Dock="Top"
             HorizontalAlignment="Center">
-            <TextBlock>工程目录下已导出使用文档</TextBlock>
+            <TextBlock>如果该工具对您有所帮助，欢迎 </TextBlock>
             <TextBlock x:Name="CheckVedio">
-                <Hyperlink Click="CheckDoc">点击查看</Hyperlink>
+                <Hyperlink Click="CheckDoc">三连支持</Hyperlink>
             </TextBlock>
         </WrapPanel>
 
