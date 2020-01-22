@@ -71,6 +71,18 @@ namespace AutoVsCEnv_WPF.Forms
             }
         }
 
+        private void PathInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(PathCheck(PathInput.Text))
+            { 
+                NextButton.IsEnabled = true;
+            }
+            else
+            {
+                NextButton.IsEnabled = false;
+            }
+        }
+
         private bool InculdeChinese(string text)
         {
             char[] textArr = text.ToCharArray();
@@ -86,22 +98,20 @@ namespace AutoVsCEnv_WPF.Forms
 
         private bool PathCheck(string path)
         {
-            if (Directory.Exists(path))
+            if (!Directory.Exists(path))
             {
-                if (InculdeChinese(path))
-                {
-                    MessageBox.Show("路径包含中文", "路径错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    return true;
-                }
+                PathError.Text = "路径不存在";
+                return false;
             }
-            else
+
+            if (InculdeChinese(path))
             {
-                MessageBox.Show("路径不存在", "路径错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                PathError.Text = "路径包含中文";
+                return false;
             }
-            return false;
+
+            PathError.Text = "";
+            return true;
         }
 
         private void PrevButton_Click(object sender, RoutedEventArgs e)
