@@ -64,7 +64,7 @@ namespace AutoVsCEnv_WPF.Operators
                 ExtractHelper.Extract(@"data\config.7z", projectPath);
 
                 ChangeProgress("正在修改用户Path路径");
-                
+                PathAdder.AddInUserPath(gccPath);
             }
 
             if (codePath != EnvChecker.NOTFOUND)
