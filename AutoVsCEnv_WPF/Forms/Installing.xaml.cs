@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AutoVsCEnv_WPF.Operators;
+using System.ComponentModel;
 
 namespace AutoVsCEnv_WPF.Forms
 {
@@ -20,14 +22,56 @@ namespace AutoVsCEnv_WPF.Forms
     /// </summary>
     public partial class Installing : Page
     {
-        public Installing()
+        string gccPath;
+        string projectPath;
+        BackgroundWorker worker;
+
+        public Installing(string gccPath, string projectPath)
         {
             InitializeComponent();
+            this.gccPath = gccPath;
+            this.projectPath = projectPath;
+            worker = new BackgroundWorker();
         }
 
         private void CheckBiliSpace(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://space.bilibili.com/12263994");
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += StartInstall;
+            worker.ProgressChanged += ProgressChanged;
+            worker.RunWorkerCompleted += WorkerCompleted;
+        }
+
+        
+
+        private void StartInstall(object sender, DoWorkEventArgs args)
+        {
+            Installer installer = new Installer(gccPath, projectPath);
+            installer.OnProgressChangeEvent += ProgressChangeSend;
+            installer.StartInstall();
+        }
+
+        // 收到Installer的事件调用，将内容发送给worker
+        private void ProgressChangeSend(string text)
+        {
+            worker.ReportProgress(0, text);
+        }
+
+        //worker处理进度
+        private void ProgressChanged(object sender, ProgressChangedEventArgs args)
+        {
+            WorkingWith.Text = args.UserState as string;
+        }
+
+        private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)
+        {
+            Application.Current.MainWindow.Content = new Completed();
         }
     }
 }

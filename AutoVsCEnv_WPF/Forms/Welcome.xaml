@@ -10,7 +10,7 @@
       Title="Welcome">
 
     <DockPanel>
-        <uc:Title 
+        <uc:UcTitle 
             DockPanel.Dock="Top"
             MainText="嗨！你好呀!" 
             SubText="欢迎使用 VScode C/C++ 一键配置工具" 

@@ -87,7 +87,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Title.xaml">
+    <Page Include="UserControls\UcTitle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,9 +112,10 @@
     </Compile>
     <Compile Include="Operators\CmdRunner.cs" />
     <Compile Include="Operators\EnvChecker.cs" />
+    <Compile Include="Operators\Installer.cs" />
     <Compile Include="Operators\LanzouLinkResolutor.cs" />
-    <Compile Include="UserControls\Title.xaml.cs">
-      <DependentUpon>Title.xaml</DependentUpon>
+    <Compile Include="UserControls\UcTitle.cs">
+      <DependentUpon>UcTitle.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

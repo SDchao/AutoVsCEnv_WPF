@@ -8,10 +8,11 @@
       xmlns:local="clr-namespace:AutoVsCEnv_WPF.Forms"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Installing">
+      Title="Installing"
+      Loaded="Page_Loaded">
 
     <DockPanel>
-        <uc:Title 
+        <uc:UcTitle 
             DockPanel.Dock="Top"
             MainText="一切即将准备就绪" 
             SubText="正在配置VScode C/C++ 环境" 
@@ -35,8 +36,6 @@
             <WrapPanel
                 HorizontalAlignment="Center">
                 <TextBlock x:Name="WorkingWith">正在初始化操作</TextBlock>
-                <TextBlock xml:space="preserve"> </TextBlock>
-                <TextBlock x:Name="Percent">(100%)</TextBlock>
             </WrapPanel>
         </StackPanel>
 

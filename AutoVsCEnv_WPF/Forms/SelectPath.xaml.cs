@@ -40,21 +40,22 @@ namespace AutoVsCEnv_WPF.Forms
         {
             if(NowStep == 0)
             {
-                Title.MainText = "我们需要您提供一些路径";
-                Title.SubText = "请选择MinGW编译器安装位置";
-                Title.Description = "MinGW编译器是将源代码(.c 或 .cpp)文件\n编译为可执行(.exe)文件的工具。";
+                UcTitle.MainText = "我们需要您提供一些路径";
+                UcTitle.SubText = "请选择MinGW编译器安装位置";
+                UcTitle.Description = "MinGW编译器是将源代码(.c 或 .cpp)文件\n编译为可执行(.exe)文件的工具。";
                 PrevButton.Content = "取消";
 
                 PathInput.SetBinding(TextBox.TextProperty, "SelectedGccPath");
             }
             else
             {
-                Title.MainText = "还需要选择最后一个路径";
-                Title.SubText = "请选择 VScode 项目文件夹位置";
-                Title.Description = "项目文件夹是存放源代码(.c 或 .cpp)的位置\n您今后需要调试的代码都需要存放在此文件夹内";
+                UcTitle.MainText = "还需要选择最后一个路径";
+                UcTitle.SubText = "请选择 VScode 项目文件夹位置";
+                UcTitle.Description = "项目文件夹是存放源代码(.c 或 .cpp)的位置\n您今后需要调试的代码都需要存放在此文件夹内";
                 PrevButton.Content = "上一步";
                 PathInput.SetBinding(TextBox.TextProperty, "SelectedProjectPath");
             }
+
         }
 
         private void Select_Click(object sender, RoutedEventArgs e)
@@ -125,7 +126,7 @@ namespace AutoVsCEnv_WPF.Forms
             }
             else
             {
-                Application.Current.MainWindow.Content = new Installing();
+                Application.Current.MainWindow.Content = new Installing(SelectedProjectPath,SelectedGccPath);
             }
         }
     }

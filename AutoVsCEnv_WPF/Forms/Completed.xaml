@@ -10,7 +10,7 @@
       Title="Completed">
 
     <DockPanel>
-        <uc:Title 
+        <uc:UcTitle 
             DockPanel.Dock="Top"
             MainText="已完成配置" 
             SubText="部分配置需要重启后生效" 

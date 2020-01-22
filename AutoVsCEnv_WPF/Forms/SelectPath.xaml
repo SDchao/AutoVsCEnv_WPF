@@ -6,13 +6,12 @@
       xmlns:uc="clr-namespace:AutoVsCEnv_WPF.UserControls"
       xmlns:local="clr-namespace:AutoVsCEnv_WPF.Forms"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AutoVsCEnv">
+      d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel>
-        <uc:Title 
+        <uc:UcTitle
             DockPanel.Dock="Top"
-            x:Name="Title"
+            x:Name="UcTitle"
             MainText="我们需要您提供一些路径" 
             SubText="请选择MinGW编译器安装位置" 
             Description="MinGW编译器是将源代码(.c 或 .cpp)文件&#13;编译为可执行(.exe)文件的工具。"/>
