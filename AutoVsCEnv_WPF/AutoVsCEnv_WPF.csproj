@@ -111,6 +111,7 @@
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Operators\CmdRunner.cs" />
+    <Compile Include="Operators\DownloadHelper.cs" />
     <Compile Include="Operators\EnvChecker.cs" />
     <Compile Include="Operators\Installer.cs" />
     <Compile Include="Operators\LanzouLinkResolutor.cs" />
@@ -146,6 +147,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Libs\aria2c.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Resources\Loading.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
