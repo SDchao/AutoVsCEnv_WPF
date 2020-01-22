@@ -128,7 +128,7 @@ namespace AutoVsCEnv_WPF.Forms
             }
             else
             {
-                Application.Current.MainWindow.Content = new Installing(SelectedProjectPath, SelectedGccPath);
+                Application.Current.MainWindow.Content = new Installing(SelectedGccPath, SelectedProjectPath);
             }
         }
     }

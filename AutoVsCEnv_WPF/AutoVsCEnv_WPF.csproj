@@ -113,6 +113,7 @@
     <Compile Include="Operators\CmdRunner.cs" />
     <Compile Include="Operators\DownloadHelper.cs" />
     <Compile Include="Operators\EnvChecker.cs" />
+    <Compile Include="Operators\ExtractHelper.cs" />
     <Compile Include="Operators\Installer.cs" />
     <Compile Include="Operators\LanzouLinkResolutor.cs" />
     <Compile Include="UserControls\UcTitle.cs">
@@ -137,6 +138,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="data\config.7z">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,7 +151,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Libs\aria2c.exe">
+    <None Include="libs\aria2c.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libs\7z.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Resources\Loading.gif">

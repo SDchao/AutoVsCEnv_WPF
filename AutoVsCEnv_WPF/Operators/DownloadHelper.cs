@@ -6,7 +6,7 @@ namespace AutoVsCEnv_WPF.Operators
 {
     class DownloadHelper
     {
-        const string aria2Path = @"Libs\aria2c.exe";
+        const string aria2Path = @"libs\aria2c.exe";
 
         public delegate void OnProgressChangedHandler(string percent, string speed, string eta);
         public event OnProgressChangedHandler OnProgressChanged;

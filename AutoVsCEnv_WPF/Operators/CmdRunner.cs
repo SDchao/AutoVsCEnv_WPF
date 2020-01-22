@@ -51,25 +51,5 @@ namespace AutoVsCEnv_WPF.Operators
             CmdResult cmdResult = new CmdResult(result, error);
             return cmdResult;
         }
-
-        public static CmdResult Run(string fileName, string args)
-        {
-            Process p = new Process();
-            p.StartInfo.FileName = fileName;
-            p.StartInfo.Arguments = args;
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-
-            CmdResult cmdResult = new CmdResult("", "");
-
-            p.Start();
-            cmdResult.Set(p.StandardOutput.ReadToEnd(), p.StandardError.ReadToEnd());
-            p.WaitForExit();
-
-            return cmdResult;
-        }
     }
 }
