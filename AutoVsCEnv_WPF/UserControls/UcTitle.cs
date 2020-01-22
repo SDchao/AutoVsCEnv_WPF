@@ -12,14 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace AutoVsCEnv_WPF.UserControls
 {
     /// <summary>
     /// Title.xaml 的交互逻辑
     /// </summary>
-    public partial class UcTitle : UserControl
+    public partial class UcTitle : UserControl, INotifyPropertyChanged
     {
+
+        private string _MainText;
+        private string _SubText;
+        private string _Description;
 
         public UcTitle()
         {
@@ -27,8 +32,48 @@ namespace AutoVsCEnv_WPF.UserControls
             this.DataContext = this;
         }
 
-        public string MainText { get; set; }
-        public string SubText { get; set; }
-        public string Description { get; set; }
+        public string MainText {
+            get
+            {
+                return _MainText;
+            }
+            set
+            {
+                _MainText = value;
+                NotifyPropertyChanged("MainText");
+            }
+        }
+        public string SubText {
+            get
+            {
+                return _SubText;
+            }
+            set
+            {
+                _SubText = value;
+                NotifyPropertyChanged("SubText");
+            }
+        }
+        public string Description {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                _Description = value;
+                NotifyPropertyChanged("Description");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            if(PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }
