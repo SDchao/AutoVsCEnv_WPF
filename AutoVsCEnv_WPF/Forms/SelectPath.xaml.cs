@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Ookii.Dialogs.Wpf;
+using System.Text.RegularExpressions;
 using System.IO;
 
 namespace AutoVsCEnv_WPF.Forms
@@ -38,7 +39,7 @@ namespace AutoVsCEnv_WPF.Forms
 
         private void UpdateText()
         {
-            if(NowStep == 0)
+            if (NowStep == 0)
             {
                 UcTitle.MainText = "我们需要您提供一些路径";
                 UcTitle.SubText = "请选择MinGW编译器安装位置";
@@ -55,26 +56,22 @@ namespace AutoVsCEnv_WPF.Forms
                 PrevButton.Content = "上一步";
                 PathInput.SetBinding(TextBox.TextProperty, "SelectedProjectPath");
             }
-            
+
         }
 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
-            Console.WriteLine(SelectedGccPath);
             dialog.SelectedPath = SelectedGccPath;
             dialog.ShowDialog();
-            if(PathCheck(dialog.SelectedPath))
-            {
-                PathInput.Text = dialog.SelectedPath;
-                PathInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            }
+            PathInput.Text = dialog.SelectedPath;
+            PathInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
 
         private void PathInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(PathCheck(PathInput.Text))
-            { 
+            if (PathCheck(PathInput.Text))
+            {
                 NextButton.IsEnabled = true;
             }
             else
@@ -83,16 +80,11 @@ namespace AutoVsCEnv_WPF.Forms
             }
         }
 
-        private bool InculdeChinese(string text)
+        private bool InculdeIllegal(string text)
         {
-            char[] textArr = text.ToCharArray();
-            for (int i = 0; i < textArr.Length; i++)
-            {
-                if (textArr[i] >= 0x4e00 && textArr[i] <= 0x9fbb)
-                {
-                    return true;
-                }
-            }
+            Regex regex = new Regex(@"[^a-zA-Z0-9_ :\\]");
+            if (regex.Match(text).Success)
+                return true;
             return false;
         }
 
@@ -104,9 +96,9 @@ namespace AutoVsCEnv_WPF.Forms
                 return false;
             }
 
-            if (InculdeChinese(path))
+            if (InculdeIllegal(path))
             {
-                PathError.Text = "路径包含中文";
+                PathError.Text = "路径包含非法字符";
                 return false;
             }
 
@@ -116,7 +108,7 @@ namespace AutoVsCEnv_WPF.Forms
 
         private void PrevButton_Click(object sender, RoutedEventArgs e)
         {
-            if(NowStep == 0)
+            if (NowStep == 0)
             {
                 Application.Current.MainWindow.Content = new Welcome();
             }
@@ -129,14 +121,14 @@ namespace AutoVsCEnv_WPF.Forms
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            if(NowStep == 0)
+            if (NowStep == 0)
             {
                 NowStep = 1;
                 UpdateText();
             }
             else
             {
-                Application.Current.MainWindow.Content = new Installing(SelectedProjectPath,SelectedGccPath);
+                Application.Current.MainWindow.Content = new Installing(SelectedProjectPath, SelectedGccPath);
             }
         }
     }

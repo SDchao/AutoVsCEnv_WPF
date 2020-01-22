@@ -38,6 +38,7 @@ namespace AutoVsCEnv_WPF.Operators
 
             ChangeProgress("正在检查VScode环境");
             string codePath = EnvChecker.GetCodePath();
+
         }
 
         private void ChangeProgress(string newOperation)

@@ -46,6 +46,7 @@ namespace AutoVsCEnv_WPF.Forms
             worker.DoWork += StartInstall;
             worker.ProgressChanged += ProgressChanged;
             worker.RunWorkerCompleted += WorkerCompleted;
+            worker.RunWorkerAsync();
         }
 
         
