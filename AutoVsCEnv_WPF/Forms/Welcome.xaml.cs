@@ -32,7 +32,7 @@ namespace AutoVsCEnv_WPF.Forms
 
         private void CheckVideo_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.baidu.com");
+            System.Diagnostics.Process.Start("https://www.bilibili.com/video/av52434248");
         }
     }
 }
