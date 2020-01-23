@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace AutoVsCEnv_WPF.Operators
 {
@@ -13,6 +14,12 @@ namespace AutoVsCEnv_WPF.Operators
 
         public void Download(string url, string saveDirectory)
         {
+
+            if (!File.Exists(aria2Path))
+            {
+                throw new FileNotFoundException("未能找到aria2c.exe\n尝试查找的目录为" + aria2Path);
+            }
+
             Console.WriteLine(url);
             string args = "-d " + saveDirectory + " -c " + 
                 "--header=\"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\" " +

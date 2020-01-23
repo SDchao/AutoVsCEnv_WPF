@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.IO;
 
 namespace AutoVsCEnv_WPF.Operators
 {
@@ -13,6 +14,12 @@ namespace AutoVsCEnv_WPF.Operators
 
         public static void Extract(string path, string outPutDirectory)
         {
+
+            if(!File.Exists(szPath))
+            {
+                throw new FileNotFoundException("未能找到7z.exe\n尝试查找的目录为" + szPath);
+            }
+
             Process p = new Process();
             p.StartInfo.FileName = szPath;
             p.StartInfo.Arguments = "x " + path + " -y -o" + outPutDirectory;
