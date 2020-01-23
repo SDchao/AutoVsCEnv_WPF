@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 
 namespace AutoVsCEnv_WPF.Operators
 {
@@ -47,7 +48,7 @@ namespace AutoVsCEnv_WPF.Operators
                     "找不到喵",MessageBoxButton.OK,MessageBoxImage.Exclamation);
             }
 
-            if (hasGcc) // 发布前记得修改啊！！！！！！！！！！！！！！！！！！！！！
+            if (!hasGcc)
             {
                 ChangeProgress("正在解析 MinGW 下载链接");
                 string downloadUrl = LanzouLinkResolutor.Resolve(lanzouUrl);
@@ -62,15 +63,29 @@ namespace AutoVsCEnv_WPF.Operators
 
                 ChangeProgress("正在配置工作区");
                 ExtractHelper.Extract(@"data\config.7z", projectPath);
+                string launchPath = projectPath + @"\.vscode\launch.json";
+                string launchContent = File.ReadAllText(launchPath);
+                launchContent = launchContent.Replace("%%cPath%%", gccPath.Replace("\\","/"));
+                File.WriteAllText(launchPath, launchContent);
 
                 ChangeProgress("正在修改用户Path路径");
-                PathAdder.AddInUserPath(gccPath);
+                PathAdder.AddInUserPath(gccPath + "\\bin");
             }
 
             if (codePath != EnvChecker.NOTFOUND)
             {
                 ChangeProgress("正在安装 C/C++插件");
-                CmdResult result = CmdRunner.CmdRun(codePath + "code --install-extension ms-vscode.cpptools");
+                string command = string.Empty;
+                if (codePath != string.Empty)
+                {
+                    command += codePath.Substring(0, 2);
+                    command += "&";
+                    command += "cd " + codePath + @"\bin" + "&";
+                }
+                command += "code --install-extension ms-vscode.cpptools&exit";
+                
+
+                CmdResult result = CmdRunner.CmdRun(command);
                 if(!result.result.Contains("is already installed") && !result.result.Contains("was successfully installed"))
                 {
                     MessageBox.Show("未能成功安装 C/C++ 插件。请手动安装哦",
