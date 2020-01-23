@@ -39,6 +39,7 @@ namespace AutoVsCEnv_WPF.Forms
                     }
                 }
             });
+            task.Start();
             this.Content = new Welcome();
         }
     }
