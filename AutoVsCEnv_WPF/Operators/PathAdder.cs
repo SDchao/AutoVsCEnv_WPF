@@ -13,7 +13,7 @@ namespace AutoVsCEnv_WPF.Operators
             string pathVar = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
             if(!pathVar.Contains(newPath))
             {
-                if(!pathVar.EndsWith(";"))
+                if(!pathVar.EndsWith(";") && pathVar != string.Empty)
                 {
                     pathVar += ";";
                 }
