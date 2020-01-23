@@ -20,7 +20,7 @@ namespace AutoVsCEnv_WPF.Operators
 
                 pathVar += newPath;
             }
-            Environment.SetEnvironmentVariable("PATH", newPath, EnvironmentVariableTarget.User);
+            Environment.SetEnvironmentVariable("PATH", pathVar, EnvironmentVariableTarget.User);
         }
     }
 }
