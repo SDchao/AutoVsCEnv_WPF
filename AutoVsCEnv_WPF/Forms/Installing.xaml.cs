@@ -53,9 +53,16 @@ namespace AutoVsCEnv_WPF.Forms
 
         private void StartInstall(object sender, DoWorkEventArgs args)
         {
-            Installer installer = new Installer(gccPath, projectPath);
-            installer.OnProgressChangeEvent += ProgressChangeSend;
-            installer.StartInstall();
+            try
+            {
+                Installer installer = new Installer(gccPath, projectPath);
+                installer.OnProgressChangeEvent += ProgressChangeSend;
+                installer.StartInstall();
+            }
+            catch(Exception e)
+            {
+                ErrorShower.Show(e);
+            }
         }
 
         // 收到Installer的事件调用，将内容发送给worker
