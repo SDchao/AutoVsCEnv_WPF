@@ -46,8 +46,6 @@ namespace AutoVsCEnv_WPF.Operators
             string error = p.StandardError.ReadToEnd();
 
             p.WaitForExit();
-
-            p.Close();
             CmdResult cmdResult = new CmdResult(result, error);
             return cmdResult;
         }
