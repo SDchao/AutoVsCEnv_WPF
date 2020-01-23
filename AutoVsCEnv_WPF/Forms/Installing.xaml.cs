@@ -20,7 +20,7 @@ namespace AutoVsCEnv_WPF.Forms
     /// <summary>
     /// Installing.xaml 的交互逻辑
     /// </summary>
-    public partial class Installing : Page
+    public partial class Installing : Page , IDisposable
     {
         string gccPath;
         string projectPath;
@@ -73,6 +73,25 @@ namespace AutoVsCEnv_WPF.Forms
         private void WorkerCompleted(object sender, RunWorkerCompletedEventArgs args)
         {
             Application.Current.MainWindow.Content = new Completed();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool b)
+        {
+            worker.Dispose();
+            this.Dispose(b);
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (worker.IsBusy)
+            {
+                worker.CancelAsync();
+            }
         }
     }
 }
