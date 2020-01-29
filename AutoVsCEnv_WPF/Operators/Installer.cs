@@ -37,21 +37,30 @@ namespace AutoVsCEnv_WPF.Operators
         /// </summary>
         public void StartInstall()
         {
+            Logger logger = new Logger("debug.log");
+            logger.Info("Start install");
+            logger.Info("GccPath: " + gccPath);
+            logger.Info("projectPath: " + projectPath);
+
             ChangeProgress("正在检查gcc环境");
             bool hasGcc = EnvChecker.CheckGcc();
+            logger.Info("Found Gcc: " + hasGcc.ToString());
 
             ChangeProgress("正在检查VScode环境");
             string codePath = EnvChecker.GetCodePath();
-            if(codePath == EnvChecker.NOTFOUND)
+            logger.Info("Found code: " + codePath);
+            if (codePath == EnvChecker.NOTFOUND)
             {
                 MessageBox.Show("没有找到 VScode，将不会为您配置 C/C++ 插件\n若您已经安装了VScode，请在 VScode 插件列表中搜索安装。",
                     "找不到喵",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                logger.Warn("Cannot Find code!");
             }
 
             if (!hasGcc)
             {
                 ChangeProgress("正在解析 MinGW 下载链接");
                 string downloadUrl = LanzouLinkResolutor.Resolve(lanzouUrl);
+                logger.Info("Created Download Link: " + downloadUrl);
 
                 ChangeProgress("正在下载 MinGW");
                 DownloadHelper downloadHelper = new DownloadHelper();
@@ -68,8 +77,10 @@ namespace AutoVsCEnv_WPF.Operators
             ChangeProgress("正在配置工作区");
             ExtractHelper.Extract(@"data\config.7z", projectPath);
             string launchPath = projectPath + @"\.vscode\launch.json";
+            logger.Info("Launch File Path: " + launchPath);
             string launchContent = File.ReadAllText(launchPath);
             launchContent = launchContent.Replace("%%cPath%%", gccPath.Replace("\\", "/"));
+            logger.Info("New File Content:\n" + launchContent);
             File.WriteAllText(launchPath, launchContent);
 
             if (codePath != EnvChecker.NOTFOUND)

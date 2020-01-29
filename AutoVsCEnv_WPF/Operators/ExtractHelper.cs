@@ -11,7 +11,7 @@ namespace AutoVsCEnv_WPF.Operators
     class ExtractHelper
     {
         const string szPath = @"libs\7z.exe";
-
+        static Logger logger = new Logger("Extract.log");
         public static void Extract(string path, string outPutDirectory)
         {
 
@@ -44,6 +44,7 @@ namespace AutoVsCEnv_WPF.Operators
         private static void ReceivedOutput(object sender, DataReceivedEventArgs e)
         {
             Console.WriteLine(e.Data);
+            logger.Info(e.Data);
         }
 
 

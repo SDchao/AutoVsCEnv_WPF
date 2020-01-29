@@ -138,6 +138,7 @@
     <Compile Include="Operators\ExtractHelper.cs" />
     <Compile Include="Operators\Installer.cs" />
     <Compile Include="Operators\LanzouLinkResolutor.cs" />
+    <Compile Include="Operators\Logger.cs" />
     <Compile Include="Operators\PathAdder.cs" />
     <Compile Include="Operators\UpdateChecker.cs" />
     <Compile Include="UserControls\UcTitle.cs">
