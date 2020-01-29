@@ -61,16 +61,16 @@ namespace AutoVsCEnv_WPF.Operators
                 ChangeProgress("正在解压 MinGW");
                 ExtractHelper.Extract(@"data\MinGW.7z", gccPath);
 
-                ChangeProgress("正在配置工作区");
-                ExtractHelper.Extract(@"data\config.7z", projectPath);
-                string launchPath = projectPath + @"\.vscode\launch.json";
-                string launchContent = File.ReadAllText(launchPath);
-                launchContent = launchContent.Replace("%%cPath%%", gccPath.Replace("\\","/"));
-                File.WriteAllText(launchPath, launchContent);
-
                 ChangeProgress("正在修改用户Path路径");
                 PathAdder.AddInUserPath(gccPath + "\\bin");
             }
+
+            ChangeProgress("正在配置工作区");
+            ExtractHelper.Extract(@"data\config.7z", projectPath);
+            string launchPath = projectPath + @"\.vscode\launch.json";
+            string launchContent = File.ReadAllText(launchPath);
+            launchContent = launchContent.Replace("%%cPath%%", gccPath.Replace("\\", "/"));
+            File.WriteAllText(launchPath, launchContent);
 
             if (codePath != EnvChecker.NOTFOUND)
             {
