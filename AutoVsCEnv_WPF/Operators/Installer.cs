@@ -76,12 +76,20 @@ namespace AutoVsCEnv_WPF.Operators
 
             ChangeProgress("正在配置工作区");
             ExtractHelper.Extract(@"data\config.7z", projectPath);
+
             string launchPath = projectPath + @"\.vscode\launch.json";
             logger.Info("Launch File Path: " + launchPath);
             string launchContent = File.ReadAllText(launchPath);
             launchContent = launchContent.Replace("%%cPath%%", gccPath.Replace("\\", "/"));
             logger.Info("New File Content:\n" + launchContent);
             File.WriteAllText(launchPath, launchContent);
+
+            string propertyPath = projectPath + @"\.vscode\c_cpp_properties.json";
+            logger.Info("Property File Path: " + propertyPath);
+            string propertyContent = File.ReadAllText(propertyPath);
+            propertyContent = propertyContent.Replace("%%cPath%%", gccPath.Replace("\\", "/"));
+            logger.Info("New File Content:\n" + propertyContent);
+            File.WriteAllText(propertyPath, propertyContent);
 
             if (codePath != EnvChecker.NOTFOUND)
             {

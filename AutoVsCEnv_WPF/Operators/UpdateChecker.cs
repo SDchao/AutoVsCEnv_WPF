@@ -11,7 +11,7 @@ namespace AutoVsCEnv_WPF.Operators
 {
     class UpdateChecker
     {
-        private const string version = "1.3";
+        private const string version = "1.4";
         private const string checkPage = "https://raw.githubusercontent.com/SDchao/AutoVsCEnv_WPF/master/AutoVsCEnv_WPF/Operators/UpdateChecker.cs";
         public static bool HasUpdate()
         {
