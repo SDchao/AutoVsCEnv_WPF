@@ -58,14 +58,17 @@ namespace AutoVsCEnv_WPF.Operators
 
             if (!hasGcc)
             {
-                ChangeProgress("正在解析 MinGW 下载链接");
-                string downloadUrl = LanzouLinkResolutor.Resolve(lanzouUrl);
-                logger.Info("Created Download Link: " + downloadUrl);
+                if(!File.Exists(@"data\MinGW.7z"))
+                {
+                    ChangeProgress("正在解析 MinGW 下载链接");
+                    string downloadUrl = LanzouLinkResolutor.Resolve(lanzouUrl);
+                    logger.Info("Created Download Link: " + downloadUrl);
 
-                ChangeProgress("正在下载 MinGW");
-                DownloadHelper downloadHelper = new DownloadHelper();
-                downloadHelper.OnProgressChanged += UpdateDownloadProgress;
-                downloadHelper.Download(downloadUrl, "data");
+                    ChangeProgress("正在下载 MinGW");
+                    DownloadHelper downloadHelper = new DownloadHelper();
+                    downloadHelper.OnProgressChanged += UpdateDownloadProgress;
+                    downloadHelper.Download(downloadUrl, "data");
+                }           
 
                 ChangeProgress("正在解压 MinGW");
                 ExtractHelper.Extract(@"data\MinGW.7z", gccPath);
