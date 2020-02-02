@@ -22,7 +22,7 @@ namespace AutoVsCEnv_WPF.Operators
 
             Process p = new Process();
             p.StartInfo.FileName = szPath;
-            p.StartInfo.Arguments = "x " + path + " -y -o" + outPutDirectory;
+            p.StartInfo.Arguments = "x " + path + " -y -o\"" + outPutDirectory + "\"";
             p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
 
             p.StartInfo.UseShellExecute = false;
