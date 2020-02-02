@@ -56,7 +56,7 @@ namespace AutoVsCEnv_WPF.Operators
                 logger.Warn("Cannot Find code!");
             }
 
-            if (!hasGcc)
+            //if (!hasGcc)
             {
                 if(!File.Exists(@"data\MinGW.7z"))
                 {
