@@ -40,7 +40,7 @@ namespace AutoVsCEnv_WPF.UserControls
             set
             {
                 _MainText = value;
-                NotifyPropertyChanged("MainText");
+                NotifyPropertyChanged(nameof(MainText));
             }
         }
         public string SubText {
@@ -51,7 +51,7 @@ namespace AutoVsCEnv_WPF.UserControls
             set
             {
                 _SubText = value;
-                NotifyPropertyChanged("SubText");
+                NotifyPropertyChanged(nameof(SubText));
             }
         }
         public string Description {
@@ -62,7 +62,7 @@ namespace AutoVsCEnv_WPF.UserControls
             set
             {
                 _Description = value;
-                NotifyPropertyChanged("Description");
+                NotifyPropertyChanged(nameof(Description));
             }
         }
 
@@ -70,10 +70,7 @@ namespace AutoVsCEnv_WPF.UserControls
 
         protected void NotifyPropertyChanged(string propertyName)
         {
-            if(PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
