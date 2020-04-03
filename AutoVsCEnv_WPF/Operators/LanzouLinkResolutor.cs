@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -26,30 +27,36 @@ namespace AutoVsCEnv_WPF.Operators
         private static string SolveDownloadUrl(string downloadPageUrl)
         {
             string content = ReadHttpSourceCode(downloadPageUrl);
-
             string sign = "";
+            string signValue = "";
             string data = "";
-            // 获取bsogs值
-            Regex signRegex = new Regex("var bsogs = '(.*)';");
+
             // 获取data值
-            Regex dataRegex = new Regex("[^/][^/]data : (.*),\n");
-
-            Match signMatch = signRegex.Match(content);
+            Regex dataRegex = new Regex("[^/][^/]data : (.*?,'sign':(.*?),.*?})");
             Match dataMatch = dataRegex.Match(content);
-
-            if (signMatch.Success)
-            {
-                sign = signMatch.Groups[1].Value;
-            }
 
             if (dataMatch.Success)
             {
                 data = dataMatch.Groups[1].Value;
-            }
+                sign = dataMatch.Groups[2].Value;
 
-            if (data.Contains("'sign':bsogs"))
+                //根据Sign获取Sign值
+                Regex signRegex = new Regex("var " + sign + " *?= *?'(.*?)';");
+                Match signMatch = signRegex.Match(content);
+
+                if(signMatch.Success)
+                {
+                    signValue = signMatch.Groups[1].Value;
+                    data = data.Replace(sign, "'" + signValue + "'");
+                }
+                else
+                {
+                    throw new Exception("无法获取Sign数据");
+                }
+            }
+            else
             {
-                data = data.Replace("'sign':bsogs", "'sign':'" + sign + "'");
+                throw new Exception("无法解析下载iFrame Data数据");
             }
 
             //转化data为键值对
