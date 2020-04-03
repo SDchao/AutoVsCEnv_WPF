@@ -29,8 +29,8 @@ namespace AutoVsCEnv_WPF.Operators
 
             string sign = "";
             string data = "";
-            // 获取sign值
-            Regex signRegex = new Regex("var sg = '(.*)';");
+            // 获取bsogs值
+            Regex signRegex = new Regex("var bsogs = '(.*)';");
             // 获取data值
             Regex dataRegex = new Regex("[^/][^/]data : (.*),\n");
 
@@ -47,9 +47,9 @@ namespace AutoVsCEnv_WPF.Operators
                 data = dataMatch.Groups[1].Value;
             }
 
-            if (data.Contains("'sign':sg"))
+            if (data.Contains("'sign':bsogs"))
             {
-                data = data.Replace("'sign':sg", "'sign':'" + sign + "'");
+                data = data.Replace("'sign':bsogs", "'sign':'" + sign + "'");
             }
 
             //转化data为键值对
