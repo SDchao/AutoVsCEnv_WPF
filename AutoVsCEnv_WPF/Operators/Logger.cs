@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Text;
 
 namespace AutoVsCEnv_WPF.Operators
 {
-    class Logger
+    internal class Logger
     {
         private FileStream fileStream;
+
         public Logger(string fileName)
         {
             try
             {
                 fileStream = File.Open(fileName, FileMode.Append);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message + "\n" + e.StackTrace);
                 fileStream = null;
@@ -25,7 +23,7 @@ namespace AutoVsCEnv_WPF.Operators
 
         public void Info(string context)
         {
-            if(fileStream != null)
+            if (fileStream != null)
             {
                 context = DateTime.Now.ToString("hh:mm:ss") + "[INFO] " + context + "\n";
                 byte[] text = Encoding.UTF8.GetBytes(context);
@@ -37,7 +35,7 @@ namespace AutoVsCEnv_WPF.Operators
 
         public void Warn(string context)
         {
-            if(fileStream != null)
+            if (fileStream != null)
             {
                 context = DateTime.Now.ToString("hh:mm:ss") + "[WARN] " + context + "\n";
                 byte[] text = Encoding.UTF8.GetBytes(context);

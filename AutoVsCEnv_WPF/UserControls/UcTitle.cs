@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.ComponentModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
 
 namespace AutoVsCEnv_WPF.UserControls
 {
@@ -21,7 +8,6 @@ namespace AutoVsCEnv_WPF.UserControls
     /// </summary>
     public partial class UcTitle : UserControl, INotifyPropertyChanged
     {
-
         private string _MainText;
         private string _SubText;
         private string _Description;
@@ -32,7 +18,8 @@ namespace AutoVsCEnv_WPF.UserControls
             this.DataContext = this;
         }
 
-        public string MainText {
+        public string MainText
+        {
             get
             {
                 return _MainText;
@@ -43,7 +30,9 @@ namespace AutoVsCEnv_WPF.UserControls
                 NotifyPropertyChanged(nameof(MainText));
             }
         }
-        public string SubText {
+
+        public string SubText
+        {
             get
             {
                 return _SubText;
@@ -54,7 +43,9 @@ namespace AutoVsCEnv_WPF.UserControls
                 NotifyPropertyChanged(nameof(SubText));
             }
         }
-        public string Description {
+
+        public string Description
+        {
             get
             {
                 return _Description;

@@ -4,31 +4,30 @@
              xmlns:local="clr-namespace:AutoVsCEnv_WPF"
              StartupUri="Forms/MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="c0" Color="#1b262c"/>
-        <SolidColorBrush x:Key="c1" Color="#0f4c75"/>
-        <SolidColorBrush x:Key="c2" Color="#3282b8"/>
-        <SolidColorBrush x:Key="c3" Color="#bbe1fa"/>
-
+        <SolidColorBrush x:Key="c0" Color="#1b262c" />
+        <SolidColorBrush x:Key="c1" Color="#0f4c75" />
+        <SolidColorBrush x:Key="c2" Color="#3282b8" />
+        <SolidColorBrush x:Key="c3" Color="#bbe1fa" />
 
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource c3}"/>
-            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource c3}" />
+            <Setter Property="TextAlignment" Value="Center" />
         </Style>
 
         <!-- 点击链接样式-->
         <Style TargetType="Hyperlink">
-            <Setter Property="Foreground" Value="{StaticResource c2}"/>
+            <Setter Property="Foreground" Value="{StaticResource c2}" />
             <Style.Triggers>
                 <!--鼠标经过-->
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="{StaticResource c3}"/>
+                    <Setter Property="Foreground" Value="{StaticResource c3}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource c2}"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource c2}" />
+            <Setter Property="BorderThickness" Value="0" />
         </Style>
     </Application.Resources>
 </Application>

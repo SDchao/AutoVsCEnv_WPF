@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace AutoVsCEnv_WPF.Operators
 {
-    class DownloadHelper
+    internal class DownloadHelper
     {
-        const string aria2Path = @"libs\aria2c.exe";
+        private const string aria2Path = @"libs\aria2c.exe";
 
         public delegate void OnProgressChangedHandler(string percent, string speed, string eta);
+
         public event OnProgressChangedHandler OnProgressChanged;
 
         public void Download(string url, string saveDirectory)
         {
-
             if (!File.Exists(aria2Path))
             {
                 throw new FileNotFoundException("未能找到aria2c.exe\n尝试查找的目录为" + aria2Path);
             }
 
             Console.WriteLine(url);
-            string args = "-d " + saveDirectory + " -c " + 
+            string args = "-d " + saveDirectory + " -c " +
                 "--header=\"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\" " +
                 "--header=\"dnt: 1\" " +
                 "--header=\"accept-language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6\" " +
@@ -52,7 +52,7 @@ namespace AutoVsCEnv_WPF.Operators
         {
             Console.WriteLine(e.Data);
             Regex regex = new Regex(@"\[#.*\((.+%)\) CN:1 DL:(.*) ETA:(.*)\]");
-            if(e.Data != null)
+            if (e.Data != null)
             {
                 Match match = regex.Match(e.Data);
                 if (match.Success)
@@ -63,7 +63,7 @@ namespace AutoVsCEnv_WPF.Operators
 
                     OnProgressChanged(percent, speed, eta);
                 }
-            }        
+            }
         }
     }
 }

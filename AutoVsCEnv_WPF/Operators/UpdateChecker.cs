@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Net;
-using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace AutoVsCEnv_WPF.Operators
 {
-    class UpdateChecker
+    internal class UpdateChecker
     {
         private const string version = "1.94";
         private const string checkPage = "https://gitee.com/SDchao/AutoVsCEnv_WPF/raw/master/AutoVsCEnv_WPF/Operators/UpdateChecker.cs";
+
         public static bool HasUpdate()
         {
             string content = ReadHttpSourceCode(checkPage);
             Regex regex = new Regex("private const string version = \"(.*)\"");
             Match match = regex.Match(content);
-            if(match.Success)
+            if (match.Success)
             {
                 string nowVersion = match.Groups[1].Value;
                 if (double.Parse(version) < double.Parse(nowVersion))

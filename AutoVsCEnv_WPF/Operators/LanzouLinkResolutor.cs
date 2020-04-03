@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace AutoVsCEnv_WPF.Operators
 {
-    class LanzouLinkResolutor
+    internal class LanzouLinkResolutor
     {
         /// <summary>
         /// 解析给出的蓝奏云分享链接直链
@@ -65,22 +65,20 @@ namespace AutoVsCEnv_WPF.Operators
             Match domMatch = domRegex.Match(phpContent);
             Match urlMatch = urlRegex.Match(phpContent);
 
-            if(domMatch.Success)
+            if (domMatch.Success)
             {
                 finalUrl = domMatch.Groups[1].Value.Replace("\\", "");
             }
 
             finalUrl += "/file/";
 
-            if(urlMatch.Success)
+            if (urlMatch.Success)
             {
                 finalUrl += urlMatch.Groups[1].Value.Replace("\\", "");
             }
 
             return finalUrl;
-
         }
-
 
         private static string SolveDownloadPageUri(string content)
         {
@@ -121,10 +119,10 @@ namespace AutoVsCEnv_WPF.Operators
             request.Timeout = 10000;
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 Edg/79.0.309.68";
             request.ContentType = "application/x-www-form-urlencoded";
-            request.Accept= "application/json, text/javascript, */*";
+            request.Accept = "application/json, text/javascript, */*";
             request.ContentLength = data.Length;
             request.Referer = refer;
-            request.Headers.Add("origin","https://www.lanzous.com");
+            request.Headers.Add("origin", "https://www.lanzous.com");
             request.Headers.Set(HttpRequestHeader.Cookie, "sec_tc=AQAAAHB5XRdl9Q4AJDhn091ZwaV4BKpX; pc_ad1=1");
 
             //写入data
@@ -146,7 +144,7 @@ namespace AutoVsCEnv_WPF.Operators
             StringBuilder builder = new StringBuilder();
 
             Dictionary<string, string> keyValuePairs = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
-            foreach(KeyValuePair<string, string> pair in keyValuePairs)
+            foreach (KeyValuePair<string, string> pair in keyValuePairs)
             {
                 builder.Append(pair.Key).Append("=").Append(pair.Value).Append("&");
             }

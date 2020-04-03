@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoVsCEnv_WPF.Operators;
+using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using AutoVsCEnv_WPF.Operators;
-using System.ComponentModel;
 
 namespace AutoVsCEnv_WPF.Forms
 {
     /// <summary>
     /// Installing.xaml 的交互逻辑
     /// </summary>
-    public partial class Installing : Page , IDisposable
+    public partial class Installing : Page, IDisposable
     {
-        string gccPath;
-        string projectPath;
-        BackgroundWorker worker;
+        private string gccPath;
+        private string projectPath;
+        private BackgroundWorker worker;
 
         public Installing(string gccPath, string projectPath)
         {
@@ -49,8 +38,6 @@ namespace AutoVsCEnv_WPF.Forms
             worker.RunWorkerAsync();
         }
 
-        
-
         private void StartInstall(object sender, DoWorkEventArgs args)
         {
             try
@@ -59,7 +46,7 @@ namespace AutoVsCEnv_WPF.Forms
                 installer.OnProgressChangeEvent += ProgressChangeSend;
                 installer.StartInstall();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ErrorShower.Show(e);
             }

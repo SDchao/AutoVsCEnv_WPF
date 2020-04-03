@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 
 namespace AutoVsCEnv_WPF.Operators
 {
-    class ExtractHelper
+    internal class ExtractHelper
     {
-        const string szPath = @"libs\7z.exe";
-        static Logger logger = new Logger("Extract.log");
+        private const string szPath = @"libs\7z.exe";
+        private static Logger logger = new Logger("Extract.log");
+
         public static void Extract(string path, string outPutDirectory)
         {
-
-            if(!File.Exists(szPath))
+            if (!File.Exists(szPath))
             {
                 throw new FileNotFoundException("未能找到7z.exe\n尝试查找的目录为" + szPath);
             }
@@ -38,7 +34,6 @@ namespace AutoVsCEnv_WPF.Operators
             p.BeginErrorReadLine();
 
             p.WaitForExit();
-
         }
 
         private static void ReceivedOutput(object sender, DataReceivedEventArgs e)
@@ -46,7 +41,5 @@ namespace AutoVsCEnv_WPF.Operators
             Console.WriteLine(e.Data);
             logger.Info(e.Data);
         }
-
-
     }
 }

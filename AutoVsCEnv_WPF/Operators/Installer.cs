@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.IO;
+using System.Windows;
 
 namespace AutoVsCEnv_WPF.Operators
 {
-    class Installer
+    internal class Installer
     {
         private string gccPath;
         private string projectPath;
 
-        const string lanzouUrl = "https://www.lanzous.com/i7iwn2h?p";
+        private const string lanzouUrl = "https://www.lanzous.com/i7iwn2h?p";
 
         /// <summary>
         /// 显示进度委托
         /// </summary>
         /// <param name="progressText">进度信息字符串</param>
         public delegate void OnProgressChangeHandler(String progressText);
+
         /// <summary>
         /// 当进度变化时的事件操作
         /// </summary>
@@ -32,6 +29,7 @@ namespace AutoVsCEnv_WPF.Operators
             this.gccPath = gccPath;
             this.projectPath = projectPath;
         }
+
         /// <summary>
         /// 开始安装操作
         /// </summary>
@@ -52,13 +50,13 @@ namespace AutoVsCEnv_WPF.Operators
             if (codePath == EnvChecker.NOTFOUND)
             {
                 MessageBox.Show("没有找到 VScode，将不会为您配置 C/C++ 插件\n若您已经安装了VScode，请在 VScode 插件列表中搜索安装。",
-                    "找不到喵",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                    "找不到喵", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 logger.Warn("Cannot Find code!");
             }
 
             //if (!hasGcc)
             {
-                if(!File.Exists(@"data\MinGW.7z"))
+                if (!File.Exists(@"data\MinGW.7z"))
                 {
                     ChangeProgress("正在解析 MinGW 下载链接");
                     string downloadUrl = LanzouLinkResolutor.Resolve(lanzouUrl);
@@ -68,7 +66,7 @@ namespace AutoVsCEnv_WPF.Operators
                     DownloadHelper downloadHelper = new DownloadHelper();
                     downloadHelper.OnProgressChanged += UpdateDownloadProgress;
                     downloadHelper.Download(downloadUrl, "data");
-                }           
+                }
 
                 ChangeProgress("正在解压 MinGW");
                 ExtractHelper.Extract(@"data\MinGW.7z", gccPath);
@@ -105,10 +103,9 @@ namespace AutoVsCEnv_WPF.Operators
                     command += "cd " + codePath + @"\bin" + "&";
                 }
                 command += "code --install-extension ms-vscode.cpptools&exit";
-                
 
                 CmdResult result = CmdRunner.CmdRun(command);
-                if(!result.result.Contains("is already installed") && !result.result.Contains("was successfully installed"))
+                if (!result.result.Contains("is already installed") && !result.result.Contains("was successfully installed"))
                 {
                     MessageBox.Show("未能成功安装 C/C++ 插件。请手动安装哦",
                     "安装失败了喵", MessageBoxButton.OK, MessageBoxImage.Exclamation);

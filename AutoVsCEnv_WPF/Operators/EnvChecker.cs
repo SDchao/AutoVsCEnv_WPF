@@ -2,17 +2,18 @@
 
 namespace AutoVsCEnv_WPF.Operators
 {
-    class EnvChecker
+    internal class EnvChecker
     {
         public const string NOTFOUND = "NOTFOUND";
         private static string vscPath = NOTFOUND;
+
         public static bool CheckGcc()
         {
             CmdResult result = CmdRunner.CmdRun("gcc");
             if (result.error.Contains("no input files"))
                 return true;
             else
-                return false;           
+                return false;
         }
 
         public static string GetCodePath()

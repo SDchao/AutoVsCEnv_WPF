@@ -20,7 +20,7 @@ namespace AutoVsCEnv_WPF.Operators
         }
     }
 
-    class CmdRunner
+    internal class CmdRunner
     {
         public static CmdResult CmdRun(string command)
         {
