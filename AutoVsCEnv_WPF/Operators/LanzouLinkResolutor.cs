@@ -32,7 +32,7 @@ namespace AutoVsCEnv_WPF.Operators
             string data = "";
 
             // 获取data值
-            Regex dataRegex = new Regex("[^/][^/]data : (.*?,'sign':(.*?),.*?})");
+            Regex dataRegex = new Regex("[^/]{2}data : (.*?,'sign':(.*?),.*?})");
             Match dataMatch = dataRegex.Match(content);
 
             if (dataMatch.Success)
@@ -41,13 +41,13 @@ namespace AutoVsCEnv_WPF.Operators
                 sign = dataMatch.Groups[2].Value;
 
                 //根据Sign获取Sign值
-                Regex signRegex = new Regex("var " + sign + " *?= *?'(.*?)';");
+                Regex signRegex = new Regex("[^/]{2}var " + sign + " *?= *?'(.*?)';");
                 Match signMatch = signRegex.Match(content);
 
                 if(signMatch.Success)
                 {
                     signValue = signMatch.Groups[1].Value;
-                    data = data.Replace(sign, "'" + signValue + "'");
+                    data = data.Replace("'sign':" + sign, "'sign':'" + signValue + "'");
                 }
                 else
                 {
@@ -60,10 +60,16 @@ namespace AutoVsCEnv_WPF.Operators
             }
 
             //转化data为键值对
-            data = Json2FormData(data);
+            try
+            {
+                data = Json2FormData(data);
+            }
+            catch (Exception)
+            {
+                throw new Exception("无法转化data为Json:\n" + data + "\n" + sign + ": " + signValue);
+            }
 
             data = Encoding.UTF8.GetString(Encoding.Default.GetBytes(data));
-
             string phpContent = PostAjax(data, downloadPageUrl);
             string finalUrl = "";
             Regex domRegex = new Regex("\"dom\":\"(.*)\",\"url\"");
