@@ -30,7 +30,7 @@
 
         <StackPanel
             Margin="20px">
-            <Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/Loading.gif"
+            <Image gif:ImageBehavior.AnimatedSource="Resources/Loading.gif"
                Width="100"
                Height="100" />
             <WrapPanel
