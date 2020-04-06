@@ -31,33 +31,51 @@ namespace AutoVsCEnv_WPF.Operators
             string signValue = "";
             string data = "";
 
-            // 获取data值
-            Regex dataRegex = new Regex("[^/]{2}data : (.*?,'sign':(.*?),.*?})");
-            Match dataMatch = dataRegex.Match(content);
+            // 获取Content中JS部分
+            Regex jsRegex = new Regex(@"<script type=""text/javascript"">\n([\S\s]*?)</script>");
+            Match jsMatch = jsRegex.Match(content);
 
-            if (dataMatch.Success)
+            if(jsMatch.Success)
             {
-                data = dataMatch.Groups[1].Value;
-                sign = dataMatch.Groups[2].Value;
+                string jsContent = jsMatch.Groups[1].Value;
 
-                //根据Sign获取Sign值
-                Regex signRegex = new Regex("[^/]{2}var " + sign + " *?= *?'(.*?)';");
-                Match signMatch = signRegex.Match(content);
+                // 注释替换表达式
+                Regex desciptionRegex = new Regex(@"//.*?[\n]");
+                jsContent = desciptionRegex.Replace(jsContent, "\n");
 
-                if(signMatch.Success)
+                // 获取data值
+                Regex dataRegex = new Regex(@"data : (.*?,'sign':(.*?),.*?})");
+                Match dataMatch = dataRegex.Match(jsContent);
+
+                if (dataMatch.Success)
                 {
-                    signValue = signMatch.Groups[1].Value;
-                    data = data.Replace("'sign':" + sign, "'sign':'" + signValue + "'");
+                    data = dataMatch.Groups[1].Value;
+                    sign = dataMatch.Groups[2].Value;
+
+                    //根据Sign获取Sign值
+                    Regex signRegex = new Regex("var " + sign + " *?= *?'(.*?)';");
+                    Match signMatch = signRegex.Match(jsContent);
+
+                    if (signMatch.Success)
+                    {
+                        signValue = signMatch.Groups[1].Value;
+                        data = data.Replace("'sign':" + sign, "'sign':'" + signValue + "'");
+                    }
+                    else
+                    {
+                        throw new Exception("无法获取Sign数据");
+                    }
                 }
                 else
                 {
-                    throw new Exception("无法获取Sign数据");
+                    throw new Exception("无法解析下载iFrame Data数据");
                 }
             }
             else
             {
-                throw new Exception("无法解析下载iFrame Data数据");
+                throw new Exception("无法获取页面的JS信息");
             }
+
 
             //转化data为键值对
             try
