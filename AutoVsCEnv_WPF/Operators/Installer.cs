@@ -9,7 +9,7 @@ namespace AutoVsCEnv_WPF.Operators
         private string gccPath;
         private string projectPath;
 
-        private const string lanzouUrl = "https://www.lanzous.com/i7iwn2h?p";
+        private const string lanzouUrl = "https://sdchao.lanzous.com/i7iwn2h";
 
         /// <summary>
         /// 显示进度委托
