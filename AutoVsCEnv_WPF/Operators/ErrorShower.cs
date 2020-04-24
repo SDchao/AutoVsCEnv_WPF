@@ -29,7 +29,7 @@ namespace AutoVsCEnv_WPF.Operators
                 t.SetApartmentState(ApartmentState.STA);
                 t.Start();
                 t.Join();
-                System.Diagnostics.Process.Start("https://github.com/SDchao/AutoVsCEnv_WPF/issues/new");
+                System.Diagnostics.Process.Start("https://github.com/SDchao/AutoVsCEnv_WPF/issues/new/choose");
             }
         }
     }
