@@ -141,7 +141,7 @@ namespace AutoVsCEnv_WPF.Operators
 
         private static string PostAjax(string data, string refer)
         {
-            HttpWebRequest request = WebRequest.CreateHttp("https://www.lanzous.com/ajaxm.php");
+            HttpWebRequest request = WebRequest.CreateHttp("https://sdchao.lanzous.com/ajaxm.php");
             request.Method = "POST";
             request.Timeout = 10000;
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 Edg/79.0.309.68";
