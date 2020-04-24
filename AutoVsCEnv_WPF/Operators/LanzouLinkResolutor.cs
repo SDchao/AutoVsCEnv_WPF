@@ -61,10 +61,6 @@ namespace AutoVsCEnv_WPF.Operators
                         signValue = signMatch.Groups[1].Value;
                         data = data.Replace("'sign':" + sign, "'sign':'" + signValue + "'");
                     }
-                    else
-                    {
-                        throw new Exception("无法获取Sign数据");
-                    }
                 }
                 else
                 {
@@ -123,7 +119,7 @@ namespace AutoVsCEnv_WPF.Operators
 
             if (relativeUrl != string.Empty)
             {
-                return "https://www.lanzous.com" + relativeUrl;
+                return "https://sdchao.lanzous.com" + relativeUrl;
             }
             else
                 return null;
