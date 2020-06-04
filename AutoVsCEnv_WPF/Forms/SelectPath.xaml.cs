@@ -68,7 +68,7 @@ namespace AutoVsCEnv_WPF.Forms
 
         private bool InculdeIllegal(string text)
         {
-            Regex regex = new Regex(@"[^a-zA-Z0-9_\\]");
+            Regex regex = new Regex(@"[^a-zA-Z0-9:_\\]");
             if (regex.Match(text).Success)
                 return true;
             return false;
