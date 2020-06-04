@@ -68,7 +68,7 @@ namespace AutoVsCEnv_WPF.Forms
 
         private bool InculdeIllegal(string text)
         {
-            Regex regex = new Regex(@"[^a-zA-Z0-9_ :\\]");
+            Regex regex = new Regex(@"[^a-zA-Z0-9_\\]");
             if (regex.Match(text).Success)
                 return true;
             return false;
@@ -84,7 +84,7 @@ namespace AutoVsCEnv_WPF.Forms
 
             if (InculdeIllegal(path))
             {
-                PathError.Text = "路径包含非法字符";
+                PathError.Text = "路径包含空格或特殊符号";
                 return false;
             }
 
