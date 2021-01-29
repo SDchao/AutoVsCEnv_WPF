@@ -22,7 +22,8 @@ namespace AutoVsCEnv_WPF.Operators
 
             Console.WriteLine(url);
             string args = "-d " + saveDirectory + " -c " +
-                "-l=\"aria2.log\" " +
+                "-l \"aria2.log\" " +
+                "--log-level=notice " +
                 "--header=\"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\" " +
                 "--header=\"dnt: 1\" " +
                 "--header=\"accept-language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6\" " +
@@ -53,7 +54,6 @@ namespace AutoVsCEnv_WPF.Operators
         private void ReceivedOutput(object sender, DataReceivedEventArgs e)
         {
             Console.WriteLine(e.Data);
-            logger.Info(e.Data);
             Regex regex = new Regex(@"\[#.*\((.+%)\) CN:1 DL:(.*) ETA:(.*)\]");
             if (e.Data != null)
             {
