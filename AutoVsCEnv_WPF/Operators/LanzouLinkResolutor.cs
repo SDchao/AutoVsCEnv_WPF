@@ -61,6 +61,23 @@ namespace AutoVsCEnv_WPF.Operators
                         signValue = signMatch.Groups[1].Value;
                         data = data.Replace("'sign':" + sign, "'sign':'" + signValue + "'");
                     }
+
+                    // 获取ajaxdata
+                    if (data.Contains("'signs':ajaxdata")) {
+                        Regex ajaxdataRegex = new Regex("var ajaxdata = '(.*)';");
+                        Match ajaxdataMatch = ajaxdataRegex.Match(jsContent);
+
+                        if (ajaxdataMatch.Success)
+                        {
+                            string ajaxdataValue = ajaxdataMatch.Groups[1].Value;
+                            data = data.Replace("'signs':ajaxdata", "'signs':'" + ajaxdataValue + "'");
+                        }
+                        else
+                        {
+                            throw new Exception("无法获取ajaxdata: \ndata:" + data);
+                        }
+                    }
+
                 }
                 else
                 {
@@ -71,7 +88,6 @@ namespace AutoVsCEnv_WPF.Operators
             {
                 throw new Exception("无法获取页面的JS信息");
             }
-
 
             //转化data为键值对
             try
