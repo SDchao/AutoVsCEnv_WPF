@@ -1,7 +1,7 @@
 ---
 name: 汇报BUG
 about: 弹窗出错？结果不对？配置无效？请选择此模板➡
-title: "[BUG] 默认标题"
+title: "[BUG] 我是不改标题的坏人呜呜呜"
 labels: bug
 assignees: ''
 
@@ -16,10 +16,11 @@ assignees: ''
 
 ## 这是我当时正在进行的操作
 
-## 这是我软件目录下的log文件内容 (debug.log 和 Extract.log)
-
-### debug.log
+## 我认为弹窗不能描述我的问题，附上日志
+### 杂项日志 debug.log
 【请用文本编辑器打开log文件并将内容粘贴到此处】
 
-### Extract.log
+### 解压日志 Extract.log
 【请用文本编辑器打开log文件并将内容粘贴到此处】
+
+### 下载日志 aria2.log
