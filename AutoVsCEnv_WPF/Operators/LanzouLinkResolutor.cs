@@ -135,7 +135,7 @@ namespace AutoVsCEnv_WPF.Operators
 
             if (relativeUrl != string.Empty)
             {
-                return "https://sdchao.lanzous.com" + relativeUrl;
+                return "https://sdchao.lanzoui.com" + relativeUrl;
             }
             else
                 return null;
@@ -157,7 +157,7 @@ namespace AutoVsCEnv_WPF.Operators
 
         private static string PostAjax(string data, string refer)
         {
-            HttpWebRequest request = WebRequest.CreateHttp("https://sdchao.lanzous.com/ajaxm.php");
+            HttpWebRequest request = WebRequest.CreateHttp("https://sdchao.lanzoui.com/ajaxm.php");
             request.Method = "POST";
             request.Timeout = 10000;
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 Edg/79.0.309.68";
@@ -165,7 +165,7 @@ namespace AutoVsCEnv_WPF.Operators
             request.Accept = "application/json, text/javascript, */*";
             request.ContentLength = data.Length;
             request.Referer = refer;
-            request.Headers.Add("origin", "https://www.lanzous.com");
+            request.Headers.Add("origin", "https://www.lanzoui.com");
             request.Headers.Set(HttpRequestHeader.Cookie, "sec_tc=AQAAAHB5XRdl9Q4AJDhn091ZwaV4BKpX; pc_ad1=1");
 
             //写入data
