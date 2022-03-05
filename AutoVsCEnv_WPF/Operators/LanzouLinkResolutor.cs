@@ -35,7 +35,7 @@ namespace AutoVsCEnv_WPF.Operators
             Regex jsRegex = new Regex(@"<script type=""text/javascript"">\n([\S\s]*?)</script>");
             Match jsMatch = jsRegex.Match(content);
 
-            if(jsMatch.Success)
+            if (jsMatch.Success)
             {
                 string jsContent = jsMatch.Groups[1].Value;
 
@@ -63,21 +63,13 @@ namespace AutoVsCEnv_WPF.Operators
                     }
 
                     // 获取ajaxdata
-                    if (data.Contains("'signs':ajaxdata")) {
-                        Regex ajaxdataRegex = new Regex("var ajaxdata = '(.*)';");
-                        Match ajaxdataMatch = ajaxdataRegex.Match(jsContent);
+                    data = SolveDataVar(data, jsContent, "signs", "ajaxdata");
 
-                        if (ajaxdataMatch.Success)
-                        {
-                            string ajaxdataValue = ajaxdataMatch.Groups[1].Value;
-                            data = data.Replace("'signs':ajaxdata", "'signs':'" + ajaxdataValue + "'");
-                        }
-                        else
-                        {
-                            throw new Exception("无法获取ajaxdata: \ndata:" + data);
-                        }
-                    }
+                    // 获取websign
+                    data = SolveDataVar(data, jsContent, "websign", "websign");
 
+                    // 获取websignkey
+                    data = SolveDataVar(data, jsContent, "websignkey", "websignkey");
                 }
                 else
                 {
@@ -121,6 +113,26 @@ namespace AutoVsCEnv_WPF.Operators
             }
 
             return finalUrl;
+        }
+
+        private static string SolveDataVar(string data, string jsContent, string varKey, string varName)
+        {
+            if (data.Contains($"'{varKey}':{varName}"))
+            {
+                Regex ajaxdataRegex = new Regex($"var {varName} = '(.*)';");
+                Match ajaxdataMatch = ajaxdataRegex.Match(jsContent);
+
+                if (ajaxdataMatch.Success)
+                {
+                    string ajaxdataValue = ajaxdataMatch.Groups[1].Value;
+                    data = data.Replace($"'{varKey}':{varName}", $"'{varKey}':'{ajaxdataValue}'");
+                }
+                else
+                {
+                    throw new Exception($"无法获取{varKey}: \ndata:" + data);
+                }
+            }
+            return data;
         }
 
         private static string SolveDownloadPageUri(string content)
