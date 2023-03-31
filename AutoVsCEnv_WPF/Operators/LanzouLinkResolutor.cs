@@ -75,7 +75,7 @@ namespace AutoVsCEnv_WPF.Operators
                 {
                     throw new Exception("无法解析下载iFrame Data数据");
                 }
-            }
+           }
             else
             {
                 throw new Exception("无法获取页面的JS信息");
@@ -127,10 +127,13 @@ namespace AutoVsCEnv_WPF.Operators
                     string ajaxdataValue = ajaxdataMatch.Groups[1].Value;
                     data = data.Replace($"'{varKey}':{varName}", $"'{varKey}':'{ajaxdataValue}'");
                 }
-                else
-                {
-                    throw new Exception($"无法获取{varKey}: \ndata:" + data);
-                }
+            }
+            else if (varKey == "websign" || varKey == "websignkey")
+            {
+                string websignPattern = $"'{varKey}':(\\w+),";
+                Match websignmatch = Regex.Match(data, websignPattern);
+                string ajaxdataValue = websignmatch.Groups[1].Value;
+                data = data.Replace($"'{varKey}':{ajaxdataValue}", $"'{varKey}':'{ajaxdataValue}'");
             }
             return data;
         }
