@@ -10,6 +10,7 @@ namespace AutoVsCEnv_WPF.Operators
         private string projectPath;
 
         private const string lanzouUrl = "https://sdchao.lanzoui.com/i7iwn2h";
+        private const string giteeMinGWUrl = "https://gitee.com/SDchao/AutoVsCEnv_WPF/releases/download/MinGW/MinGW.7z";
 
         /// <summary>
         /// 显示进度委托
@@ -59,7 +60,8 @@ namespace AutoVsCEnv_WPF.Operators
                 if (!File.Exists(@"data\MinGW.7z"))
                 {
                     ChangeProgress("正在解析 MinGW 下载链接");
-                    string downloadUrl = LanzouLinkResolutor.Resolve(lanzouUrl);
+                    //string downloadUrl = LanzouLinkResolutor.Resolve(lanzouUrl);
+                    string downloadUrl = giteeMinGWUrl;
                     logger.Info("Created Download Link: " + downloadUrl);
 
                     ChangeProgress("正在下载 MinGW");
